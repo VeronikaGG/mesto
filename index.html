@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+  </head>
+  <body class="page">
+    <header class="header">
+      <img src="./images/image.svg" alt="Лого Место" class="header__logo">
+    </header>
+    <main class="content page__content">
+      <section class="profile content__section">
+        <img src="./images/image.jpeg" alt="Фото Жак-Ив Кусто" class="profile__avatar">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button">
+            <img src="./images/botton_pen.svg" alt="Ручка" class="profile__pen">
+          </button>
+          <p class="profile__activities">Исследователь океана</p>
+        </div>
+        <div class="profile__add-button">
+          <img src="./images/botton_plus.svg" alt="Плюс" class="profile__plus">
+        </div>
+      </section>
+      <section class="cards content__section">
+        <ul class="cards__list">
+          <li class="item">
+            <img src="./images/karachaevsk.jpeg" alt="Здание" class="item__image">
+            <div class="item__info">
+              <h2 class="item__name">Карачаевск</h2>
+              <div class="item__like item__like_active"></div>
+            </div>
+          </li>
+          <li class="item">
+            <img src="./images/gora_elbrus.jpeg" alt="Гора Эльбрус" class="item__image">
+            <div class="item__info">
+              <h2 class="item__name">Гора Эльбрус</h2>
+              <div class="item__like item__like_active"></div>
+            </div>
+          </li>
+          <li class="item">
+            <img src="./images/dombai.jpeg" alt="Снежная гора" class="item__image">
+            <div class="item__info">
+              <h2 class="item__name">Домбай</h2>
+              <div class="item__like item__like_active"></div>
+            </div>
+          </li>
+          <li class="item">
+            <img src="./images/gora_elbrus.jpeg" alt="Гора Эльбрус" class="item__image">
+            <div class="item__info">
+              <h2 class="item__name">Гора Эльбрус</h2>
+              <div class="item__like item__like_active"></div>
+            </div>
+          </li>
+          <li class="item">
+            <img src="./images/dombai.jpeg" alt="Снежная гора" class="item__image">
+            <div class="item__info">
+              <h2 class="item__name">Домбай</h2>
+              <div class="item__like item__like_active"></div>
+            </div>
+          </li>
+          <li class="item">
+            <img src="./images/karachaevsk.jpeg" alt="Здание" class="item__image">
+            <div class="item__info">
+              <h2 id="'karachaevsk" class="item__name">Карачаево-Черкесия</h2>
+              <div class="item__like item__like_active"></div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer__copyright">
+        <p class="footer__text">&copy; 2022 Mesto Russia</p>
+      </div>
+    </footer>
+    <section class="popup popup_opened">
+        <div class="popup__container">
+          <div class="popup__close"></div>
+            <div class="popup__content">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <form class="popup__input-container">
+                  <input type="text" class="popup__name" placeholder="Жак-Ив Кусто">
+                  <input type="text" class="popup__aboutme" placeholder="Исследователь океана">
+                </form>
+                  <button class="popup__button">Сохранить</button>
+            </div>
+        </div>
+      </section>
+      <script src="./scripts/index.js"></script>
+  </body>
+</html>
