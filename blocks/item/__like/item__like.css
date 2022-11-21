@@ -4,6 +4,9 @@
   height: 19px;
   margin: 25px 20px 31px auto;
   transition: 0.5s;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 .item__like:hover {
   opacity: 0.6;

@@ -9,10 +9,11 @@
   border-radius: 2px;
   transition: 0.5s;
   box-sizing: border-box;
+  cursor: pointer;
+  background-color: transparent;
 }
 .profile__add-button:hover {
   opacity: 0.6;
-  cursor: pointer;
 }
 @media screen and (max-width: 890px) {
   .profile__add-button {
