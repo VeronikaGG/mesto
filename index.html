@@ -34,15 +34,15 @@
         <p class="footer__text">&copy; 2022 Mesto Russia</p>
       </div>
     </footer>
-    <section class="popup">
+    <section class="popup profile-popup">
       <div class="popup__container">
-        <button type="button" class="popup__close" aria-label="Кнопка закрытия попапа"></button>
+        <button type="button" class="popup__close popup__close_type_edit-form" aria-label="Кнопка закрытия попапа"></button>
         <div class="popup__content">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form name="editform" class="popup__form">
+          <form name="editform" class="popup__form popup__form_edit-form">
             <input name="name" type="text" class="popup__input popup__input_type_name" placeholder="Введите имя">
             <input name="job" type="text" class="popup__input popup__input_type_aboutme" placeholder="Введите профессию">
-            <button type="submit" class="popup__button">Сохранить</button>
+            <button type="submit" class="popup__button popup__button_type_edit-profile">Сохранить</button>
           </form>
         </div>
       </div>
@@ -52,7 +52,7 @@
         <button type="button" class="popup__close popup__close_type_add-image" aria-label="Кнопка закрытия попапа"></button>
         <div class="popup__content">
           <h2 class="popup__title">Новое место</h2>
-          <form name="editform" class="popup__form popup__form_create-card">
+          <form name="createform" class="popup__form popup__form_create-card">
             <input name="title" type="text" class="popup__input popup__input_type_title" placeholder="Название">
             <input name="link" type="text" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку">
             <button type="submit" class="popup__button popup__button_type_add-image">Создать</button>
@@ -62,7 +62,7 @@
     </section>
     <section class="popup popup_open-image">
       <div class="popup__image-container">
-        <button type="button" class="popup__close-image" aria-label="Кнопка закрытия картинки"></button>
+        <button type="button" class="popup__close popup__close-image" aria-label="Кнопка закрытия картинки"></button>
         <img src="#" alt="Картинка" class="popup__image">
         <h2 class="popup__name">Имя картинки</h2>
       </div>
