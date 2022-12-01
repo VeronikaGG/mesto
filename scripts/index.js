@@ -83,16 +83,19 @@ popupCloseImage.addEventListener('click', () => closePopup(popupOpenElement));
 
 //редактирование профиля
 const createPopupVisibility = () => {
-  popupName.value = profileName.textContent;
-  popupActivities.value = profileActivities.textContent;
-  
+popupName.value = profileName.textContent;
+popupActivities.value = profileActivities.textContent;
+
 };
+
+popupOpenButtonElement.addEventListener('click', createPopupVisibility);
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = popupName.value;
   profileActivities.textContent = popupActivities.value;
   closePopup(popupElement);
+ 
 }
 popupEdit.addEventListener('submit', handleProfileFormSubmit);
 
