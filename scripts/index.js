@@ -74,7 +74,12 @@ function openPopup(element) {
   element.classList.add('popup_opened');
 };
 
-popupOpenButtonElement.addEventListener('click', () => openPopup(popupElement));
+popupOpenButtonElement.addEventListener('click', () => {
+  createPopupVisibility();
+  openPopup(popupElement); 
+});
+
+
 popupCloseButtonElement.addEventListener('click', () => closePopup(popupElement));
 popupOpenAddImage.addEventListener('click', () => openPopup(popupAddImage));
 popupCloseAddImage.addEventListener('click', () => closePopup(popupAddImage));
@@ -88,8 +93,6 @@ popupActivities.value = profileActivities.textContent;
 
 };
 
-createPopupVisibility(popupElement);
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = popupName.value;
@@ -98,6 +101,7 @@ function handleProfileFormSubmit(evt) {
  
 }
 popupEdit.addEventListener('submit', handleProfileFormSubmit);
+
 
 
 const createCard = (item) => {
