@@ -88,7 +88,7 @@ popupActivities.value = profileActivities.textContent;
 
 };
 
-popupOpenButtonElement.addEventListener('click', createPopupVisibility);
+createPopupVisibility(popupElement);
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
