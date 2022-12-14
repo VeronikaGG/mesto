@@ -1,4 +1,4 @@
-# Проект: Mesto
+# Проект: Mesto.
 
 ## Работа сделана с использованием технологий HTML и CSS(flexbox,Grid Layout,transition, java script).
 
