@@ -1,5 +1,3 @@
-const setInputs = [...document.querySelectorAll('.popup__input')];
-
 const checkInputValidity = (input, object) => {
   const errorElement = document.querySelector(`.${input.id}-error`);
   //если валидно скрыть ошибку
@@ -33,6 +31,11 @@ const enableValidation = (object) => {
   setForms.forEach((form) => {
     const setInputs = [...form.querySelectorAll(inputSelector)];
     const popupButton = form.querySelector(submitButtonSelector);
+    form.addEventListener('reset', () => {
+      setTimeout(() => {
+        toggleButtonState(setInputs, popupButton, restObject);
+      }, 0);
+    });
 
     //перебор импутов
     setInputs.forEach((input) => {
@@ -44,7 +47,7 @@ const enableValidation = (object) => {
   });
 };
 
-const Object = {
+const object = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -53,4 +56,4 @@ const Object = {
   errorClass: 'popup__error_visible',
 };
 
-enableValidation(Object);
+enableValidation(object);
