@@ -28,10 +28,10 @@ export class FormValidator {
     const isInputValid = setInputs.every((input) => input.validity.valid);
     if (isInputValid) {
       popupButton.classList.remove(this._inactiveButtonClass);
-      popupButton.disabled = false;
+      // popupButton.disabled = false;
     } else {
       popupButton.classList.add(this._inactiveButtonClass);
-      popupButton.disabled = true;
+      // popupButton.disabled = true;
     }
   }
 
@@ -47,8 +47,8 @@ export class FormValidator {
     });
   }
   //очищение форм
-  resetForms = () => {
-    const setForms = [...document.querySelectorAll(this._Selector)];
+  resetForms() {
+    const setForms = [...document.querySelectorAll(this._formSelector)];
     setForms.forEach((form) => {
       form.addEventListener('reset', () => {
         setTimeout(() => {
@@ -56,5 +56,5 @@ export class FormValidator {
         }, 0);
       });
     });
-  };
+  }
 }
