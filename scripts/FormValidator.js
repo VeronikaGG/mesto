@@ -1,16 +1,16 @@
 export class FormValidator {
-  constructor(data, form) {
-    this._formSelector = data.formSelector;
+  constructor(data, formSelector) {
+    this._formSelector = formSelector;
     this._inputSelector = data.inputSelector;
     this._submitButtonSelector = data.submitButtonSelector;
     this._inactiveButtonClass = data.inactiveButtonClass;
     this._inputErrorClass = data.inputErrorClass;
     this._errorClass = data.errorClass;
-    this._form = form;
+    // this._formSelector = form;
   }
 
   _checkInputValidity(input) {
-    const errorElement = this._form.querySelector(`.${input.id}-error`);
+    const errorElement = this._formSelector.querySelector(`.${input.id}-error`);
     //если валидно скрыть ошибку
     if (input.validity.valid) {
       errorElement.textContent = '';
@@ -36,8 +36,8 @@ export class FormValidator {
   }
 
   enableValidation() {
-    const setInputs = [...this._form.querySelectorAll(this._inputSelector)];
-    const popupButton = this._form.querySelector(this._submitButtonSelector);
+    const setInputs = [...this._formSelector.querySelectorAll(this._inputSelector)];
+    const popupButton = this._formSelector.querySelector(this._submitButtonSelector);
     //перебор импутов
     setInputs.forEach((input) => {
       input.addEventListener('input', () => {
@@ -48,7 +48,7 @@ export class FormValidator {
   }
   //очищение форм
   resetForms = () => {
-    const setForms = [...this._form.querySelectorAll(this._formSelector)];
+    const setForms = [...document.querySelectorAll(this._Selector)];
     setForms.forEach((form) => {
       form.addEventListener('reset', () => {
         setTimeout(() => {
