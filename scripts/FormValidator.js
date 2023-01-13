@@ -28,10 +28,10 @@ export class FormValidator {
     const isInputValid = setInputs.every((input) => input.validity.valid);
     if (isInputValid) {
       popupButton.classList.remove(this._inactiveButtonClass);
-      // popupButton.disabled = false;
+      popupButton.disabled = false;
     } else {
       popupButton.classList.add(this._inactiveButtonClass);
-      // popupButton.disabled = true;
+      popupButton.disabled = true;
     }
   }
 
