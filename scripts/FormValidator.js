@@ -1,5 +1,5 @@
 export class FormValidator {
-  constructor(data, formSelector, setInputs, popupButton, popupOpenAddImage) {
+  constructor(data, formSelector, setInputs, popupButton) {
     this._formSelector = formSelector;
     this._inputSelector = data.inputSelector;
     this._submitButtonSelector = data.submitButtonSelector;
@@ -8,7 +8,6 @@ export class FormValidator {
     this._errorClass = data.errorClass;
     this._setInputs = setInputs;
     this._popupButton = popupButton;
-    this._popupOpenAddImage = popupOpenAddImage;
   }
   _showImputError(input) {
     const errorElement = this._formSelector.querySelector(`.${input.id}-error`);
@@ -66,8 +65,6 @@ export class FormValidator {
   }
   //очищение форм
   resetImputs() {
-    this._setInputs = [...this._formSelector.querySelectorAll(this._inputSelector)];
-    this._popupButton = this._formSelector.querySelector(this._submitButtonSelector);
     this._setInputs.forEach((input) => {
       this._hideImputError(input);
     });
