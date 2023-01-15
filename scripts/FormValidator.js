@@ -1,13 +1,11 @@
 export class FormValidator {
-  constructor(data, formSelector, setInputs, popupButton) {
+  constructor(data, formSelector) {
     this._formSelector = formSelector;
     this._inputSelector = data.inputSelector;
     this._submitButtonSelector = data.submitButtonSelector;
     this._inactiveButtonClass = data.inactiveButtonClass;
     this._inputErrorClass = data.inputErrorClass;
     this._errorClass = data.errorClass;
-    this._setInputs = setInputs;
-    this._popupButton = popupButton;
   }
   _showImputError(input) {
     const errorElement = this._formSelector.querySelector(`.${input.id}-error`);
