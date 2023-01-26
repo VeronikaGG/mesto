@@ -1,4 +1,36 @@
-export { initialCards, object };
+export {
+  initialCards,
+  object,
+  profilePopup,
+  profileForm,
+  popupAddImage,
+  popupCreateCard,
+  popupCreateTitle,
+  popupCreateLinkCard,
+  popupName,
+  popupActivities,
+  popupOpenAddImage,
+  popupOpenButtonElement,
+  popupOpenElement,
+  cardTemplate,
+  popupImageOpen,
+  popupNameOpen,
+};
+const profilePopup = document.querySelector('.profile-popup');
+const profileForm = profilePopup.querySelector('.popup__form_edit-form');
+const popupAddImage = document.querySelector('.popup_add-image');
+const popupCreateCard = document.querySelector('.popup__form_create-card');
+const popupCreateTitle = popupAddImage.querySelector('.popup__input_type_title');
+const popupCreateLinkCard = popupAddImage.querySelector('.popup__input_type_link');
+const popupName = profilePopup.querySelector('.popup__input_type_name');
+const popupActivities = profilePopup.querySelector('.popup__input_type_aboutme');
+const popupOpenAddImage = document.querySelector('.profile__add-button');
+const popupOpenButtonElement = document.querySelector('.profile__edit-button');
+const popupOpenElement = document.querySelector('.popup_open-image');
+const cardTemplate = document.querySelector('.card-template').content;
+const popupImageOpen = document.querySelector('.popup__image');
+const popupNameOpen = document.querySelector('.popup__name');
+
 const initialCards = [
   {
     name: 'Архыз',
