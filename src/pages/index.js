@@ -1,5 +1,3 @@
-import './index.css';
-
 import {
   initialCards,
   object,
@@ -26,9 +24,6 @@ import { Section } from '../components/Section.js';
 //закрытие попапа на кнопку
 //открытие попапов
 
-const popupOpenCardModal = new Popup('.popup_add-image');
-popupOpenCardModal.setEventListeners();
-
 const popupOpenProfileModal = new Popup('.profile-popup');
 popupOpenProfileModal.setEventListeners();
 
@@ -53,8 +48,8 @@ function handleProfeleFormSubmit(value) {
 }
 popupOpenButtonElement.addEventListener('click', () => {
   fillProfileInputs();
-  profileFormValidator.disableButton();
-  profileFormValidator.resetImputs();
+  profileFormValidator.disableSubmitButton()();
+  profileFormValidator.clearInputErrors();
   popupOpenProfileModal.open();
 });
 
@@ -63,11 +58,6 @@ const createCard = (item) => {
   const cardElements = card.generateCard();
 
   return cardElements;
-};
-
-//функция добаления карточки
-const addCardToSite = (item) => {
-  newCardsList.addCard(createCard(item));
 };
 
 //попап с открытием картинки
@@ -87,9 +77,10 @@ const newCardsList = new Section(
 //вывод массива карточек на сайт
 newCardsList.renderItems();
 
-//сохранение карточки
-function handleCardFormSubmit() {
-  addCardToSite({ name: popupCreateTitle.value, link: popupCreateLinkCard.value });
+//создание карточки
+function handleCardFormSubmit(item) {
+  const newCard = createCard(item);
+  newCardsList.addCard(newCard);
   popupCreateCardWithForm.close();
 }
 
@@ -97,13 +88,12 @@ const openImageModal = new PopupWithImage('.popup_open-image');
 openImageModal.setEventListeners();
 
 popupOpenAddImage.addEventListener('click', () => {
-  popupOpenCardModal.open();
   popupCreateCardWithForm.open();
-  createCardFormValidator.disableButton();
-  createCardFormValidator.resetImputs();
+  createCardFormValidator.disableSubmitButton();
+  createCardFormValidator.clearInputErrors();
 });
 
-const profileFormValidator = new FormValidator(object, profileForm);
+const profileFormValidator = new FormValidator(object, profileForm); ///спасибо большое за рекомендацию, попробую сделать это самостоятельно немного позже.
 profileFormValidator.enableValidation();
 
 const createCardFormValidator = new FormValidator(object, popupCreateCard);

@@ -31,30 +31,30 @@ export class FormValidator {
     }
   }
   //отдельная функция блокировки кпопки со стилями если не валидно
-  _disableSubmitButton() {
-    this._popupButton.classList.add(this._inactiveButtonClass);
-    this._popupButton.disabled = true;
+  disableSubmitButton() {
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.disabled = true;
   }
   _enableSubmitButton() {
-    this._popupButton.classList.remove(this._inactiveButtonClass);
-    this._popupButton.disabled = false;
+    this._submitButton.classList.remove(this._inactiveButtonClass);
+    this._submitButton.disabled = false;
   }
 
   //блокировка кнопки и переключение стилей
   _toggleButtonState() {
-    const isInputValid = this._setInputs.every((input) => input.validity.valid);
+    const isInputValid = this._inputs.every((input) => input.validity.valid);
     if (isInputValid) {
       this._enableSubmitButton();
     } else {
-      this._disableSubmitButton();
+      this.disableSubmitButton();
     }
   }
 
   enableValidation() {
-    this._setInputs = [...this._formSelector.querySelectorAll(this._inputSelector)];
-    this._popupButton = this._formSelector.querySelector(this._submitButtonSelector);
+    this._inputs = [...this._formSelector.querySelectorAll(this._inputSelector)];
+    this._submitButton = this._formSelector.querySelector(this._submitButtonSelector);
     //перебор импутов
-    this._setInputs.forEach((input) => {
+    this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input);
         this._toggleButtonState();
@@ -62,13 +62,9 @@ export class FormValidator {
     });
   }
   //очищение форм
-  resetImputs() {
-    this._setInputs.forEach((input) => {
+  clearInputErrors() {
+    this._inputs.forEach((input) => {
       this._hideImputError(input);
     });
-  }
-  disableButton() {
-    this._popupButton.classList.add(this._inactiveButtonClass);
-    this._popupButton.setAttribute('disabled', 'true');
   }
 }
