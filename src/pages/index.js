@@ -13,19 +13,15 @@ import {
 
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { Popup } from '../components/Popup.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Section } from '../components/Section.js';
-
+import './index.css';
 //закрытие попапов на крестик и оверлей
 //закрытие попапов
 //закрытие попапа на кнопку
 //открытие попапов
-
-const popupOpenProfileModal = new Popup('.profile-popup');
-popupOpenProfileModal.setEventListeners();
 
 const popupProfileWithForm = new PopupWithForm('.profile-popup', handleProfeleFormSubmit);
 popupProfileWithForm.setEventListeners();
@@ -48,9 +44,9 @@ function handleProfeleFormSubmit(value) {
 }
 popupOpenButtonElement.addEventListener('click', () => {
   fillProfileInputs();
-  profileFormValidator.disableSubmitButton()();
+  profileFormValidator.disableSubmitButton();
   profileFormValidator.clearInputErrors();
-  popupOpenProfileModal.open();
+  popupProfileWithForm.open();
 });
 
 const createCard = (item) => {
@@ -59,6 +55,12 @@ const createCard = (item) => {
 
   return cardElements;
 };
+
+// // //функция добаления карточки
+// const addCardToSite = (item) => {
+//   newCardsList.addCard(createCard(item));
+
+// };
 
 //попап с открытием картинки
 const handleOpenPopupImage = (link, name) => {
@@ -93,7 +95,7 @@ popupOpenAddImage.addEventListener('click', () => {
   createCardFormValidator.clearInputErrors();
 });
 
-const profileFormValidator = new FormValidator(object, profileForm); ///спасибо большое за рекомендацию, попробую сделать это самостоятельно немного позже.
+const profileFormValidator = new FormValidator(object, profileForm);
 profileFormValidator.enableValidation();
 
 const createCardFormValidator = new FormValidator(object, popupCreateCard);

@@ -1,8 +1,8 @@
 export class Card {
   constructor(data, handleOpenPopupImage, templateSelector) {
-    this._name = data.title;
+    this._name = data.name;
     this._link = data.link;
-    this._alt = data.title;
+    this._alt = data.name;
     this._templateSelector = templateSelector;
     this._handleOpenPopupImage = handleOpenPopupImage;
   }
