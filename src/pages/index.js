@@ -9,8 +9,10 @@ import {
   popupActivities,
   popupOpenAddImage,
   popupOpenButtonElement,
+  cardList,
 } from '../utils/Constants.js';
 
+import { api } from '../components/Api.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -31,17 +33,25 @@ popupCreateCardWithForm.setEventListeners();
 
 // // //редактирование профиля, данные из профиля в попап
 const fillProfileInputs = () => {
-  const { name, job } = profileInfo.getUserInfo();
-  popupName.value = name;
-  popupActivities.value = job;
-  popupProfileWithForm.open();
+  const inputs = profileInfo.getUserInfo();
+  popupName.value = inputs.name;
+  popupActivities.value = inputs.about;
 };
 
 //данные из попапа в профиль
-function handleProfeleFormSubmit(value) {
-  profileInfo.setUserInfo(value.name, value.job);
-  popupProfileWithForm.close();
+function handleProfeleFormSubmit(inputs) {
+  api
+    .setUserInfo(inputs)
+    .then((newData) => {
+      profileInfo.setUserInfo(newData);
+      // console.log(newData);
+      popupProfileWithForm.close();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
+//попап редактирования профиля
 popupOpenButtonElement.addEventListener('click', () => {
   fillProfileInputs();
   profileFormValidator.disableSubmitButton();
@@ -55,13 +65,6 @@ const createCard = (item) => {
 
   return cardElements;
 };
-
-// // //функция добаления карточки
-// const addCardToSite = (item) => {
-//   newCardsList.addCard(createCard(item));
-
-// };
-
 //попап с открытием картинки
 const handleOpenPopupImage = (link, name) => {
   openImageModal.open(link, name);
@@ -69,23 +72,24 @@ const handleOpenPopupImage = (link, name) => {
 
 const newCardsList = new Section(
   {
-    items: initialCards,
     renderer: (item) => {
       newCardsList.addCard(createCard(item));
     },
   },
   '.cards__list'
 );
-//вывод массива карточек на сайт
-newCardsList.renderItems();
-
 //создание карточки
-function handleCardFormSubmit(item) {
-  const newCard = createCard(item);
-  newCardsList.addCard(newCard);
-  popupCreateCardWithForm.close();
+function handleCardFormSubmit(card) {
+  api
+    .createCard(card)
+    .then((newCard) => {
+      cardList.prepend(createCard(newCard));
+      popupCreateCardWithForm.close();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
-
 const openImageModal = new PopupWithImage('.popup_open-image');
 openImageModal.setEventListeners();
 
@@ -105,3 +109,12 @@ const profileInfo = new UserInfo({
   profileName: '.profile__name',
   profileActivities: '.profile__activities',
 });
+
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([cards, userData]) => {
+    newCardsList.renderItems(cards.reverse());
+    profileInfo.setUserInfo(userData);
+  })
+  .catch((err) => {
+    console.log(err);
+  });

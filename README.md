@@ -4,4 +4,4 @@
 
 ### Валидация форм, создание классов, сборка Webpack.
 
-[Ссылка на проект](https://veronikagg.github.io/mesto/index.html)
+[Ссылка на проект](https://veronikagg.github.io/mesto/)
