@@ -1,16 +1,12 @@
 import {
-  initialCards,
   object,
   profileForm,
   popupCreateCard,
-  popupCreateTitle,
-  popupCreateLinkCard,
   popupName,
   popupActivities,
   popupOpenAddImage,
   popupOpenButtonElement,
   cardList,
-  popupConfirm,
   profileAvatarImg,
   popupAvatarForm,
 } from '../utils/Constants.js';
@@ -96,7 +92,7 @@ const fillProfileInputs = () => {
   popupName.value = inputs.name;
   popupActivities.value = inputs.about;
 };
-
+// попап обновить аватар
 profileAvatarImg.addEventListener('click', () => {
   popupRefreshAvatarFormValidator.disableSubmitButton();
   popupRefreshAvatarFormValidator.clearInputErrors();
@@ -111,20 +107,19 @@ popupOpenButtonElement.addEventListener('click', () => {
 });
 
 const createCard = (item) => {
-  const card = new Card(userId, item, handleOpenPopupImage, '.card-template', handleDeleteItem, handleClickLikeCard);
+  const card = new Card(userId, item, handleOpenPopupImage, '.card-template', handleDeleteItem, handleClickLike);
 
   const cardElements = card.generateCard();
 
   return cardElements;
 };
-
-function handleClickLikeCard(card) {
+//установить лайки
+function handleClickLike(card) {
   if (!card.isLike()) {
     api
       .setLike(card.getCardId())
-      .then(() => {
-        card.toggleLikes(card);
-        card.handleLikeClick(card);
+      .then((res) => {
+        card.toggleLikes(res);
       })
       .catch((err) => {
         console.log(err);
@@ -132,9 +127,8 @@ function handleClickLikeCard(card) {
   } else {
     api
       .deleteLike(card.getCardId())
-      .then(() => {
-        card.toggleLikes(card);
-        card.handleLikeClick(card);
+      .then((res) => {
+        card.toggleLikes(res);
       })
       .catch((err) => {
         console.log(err);
@@ -148,8 +142,8 @@ const handleDeleteItem = (card) => {
   popupdDeleteItem.handleFormSubmit(() => {
     return api
       .deleteCard(card.getCardId())
-      .then(() => {
-        card.handleDeleteCard();
+      .then((res) => {
+        card.handleDeleteCard(res);
       })
       .catch((err) => {
         console.log(err);
@@ -185,7 +179,7 @@ function handleCardFormSubmit(card) {
 }
 const openImageModal = new PopupWithImage('.popup_open-image');
 openImageModal.setEventListeners();
-
+//попап открытия картинки
 popupOpenAddImage.addEventListener('click', () => {
   popupCreateCardWithForm.open();
   createCardFormValidator.disableSubmitButton();

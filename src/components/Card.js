@@ -20,32 +20,6 @@ export class Card {
     return cardElements;
   }
 
-  generateCard() {
-    this._element = this._getTemplate();
-    this._element.querySelector('.item__name').textContent = this._name;
-    this._cardImage = this._element.querySelector('.item__image');
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
-    this._likeButton = this._element.querySelector('.item__like');
-    this._deleteElement = this._element.querySelector('.item__trash');
-    this._cardLikesCounter = this._element.querySelector('.item__like-counter');
-    this._cardLikesCounter.textContent = this._likes.length;
-    this._checkUserLike();
-
-    //лайк
-    // (this._likes.find((user) => user._id === this._userId)) this._handleLikeButton();
-
-    // if (this._likes.find((user) => user._id === this._userId)) this._handleLikeClick();
-
-    //карзина
-    if (this._ownId !== this._userId) {
-      this._handleRemoveElement();
-    }
-    this._setEventListeners();
-
-    return this._element;
-  }
-
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       this._handleClickLike(this);
@@ -58,17 +32,17 @@ export class Card {
       this._handleOpenPopupImage(this._link, this._name);
     });
   }
-  toggleLikes(data) {
-    // console.log('data =>', data);
 
-    this._likes = data._likes;
+  toggleLikes(data) {
+    this._cardLikesCounter.textContent = data.likes.length;
+    this._likes = data.likes;
     this._likeButton.classList.toggle('item__like_active_black');
-    this._cardLikesCounter.textContent = data._likes.length;
   }
 
   _handleRemoveElement() {
     this._deleteElement.classList.add('item__trash-inactive');
   }
+  //удалить карточку
   handleDeleteCard() {
     this._element.remove();
     this._element = null;
@@ -88,5 +62,25 @@ export class Card {
     } else {
       this._likeButton.classList.remove('item__like_active_black');
     }
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._element.querySelector('.item__name').textContent = this._name;
+    this._cardImage = this._element.querySelector('.item__image');
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._likeButton = this._element.querySelector('.item__like');
+    this._deleteElement = this._element.querySelector('.item__trash');
+    this._cardLikesCounter = this._element.querySelector('.item__like-counter');
+    this._cardLikesCounter.textContent = this._likes.length;
+    this._checkUserLike();
+    //карзина
+    if (this._ownId !== this._userId) {
+      this._handleRemoveElement();
+    }
+    this._setEventListeners();
+
+    return this._element;
   }
 }
