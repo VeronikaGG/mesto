@@ -12,7 +12,10 @@
     </header>
     <main class="content page__content">
       <section class="profile content__section">
-        <img src="<%=require('./images/image.jpg')%>" alt="Фото Жак-Ив Кусто" class="profile__avatar">
+        <button class="profile__avatar-edit">
+          <img src="<%=require('./images/image.jpg')%>" alt="Фото Жак-Ив Кусто" class="profile__avatar">
+          <img src="<%=require('./images/botton_pen.svg')%>" alt="Ручка" class="profile__pen-avatar">
+        </button>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type="button" class="profile__edit-button" aria-label="Кнопка редактировать">
@@ -78,13 +81,40 @@
         <h2 class="popup__name">Имя картинки</h2>
       </div>
     </div>
+    <div class="popup popup-confirm">
+      <div class="popup__container">
+        <button type="button" class="popup__close popup__close_type_comfirm-form" aria-label="Кнопка закрытия попапа"></button>
+        <div class="popup__content popup__content-confirm">
+          <h2 class="popup__title">Вы&nbsp;уверены?</h2>
+          <button type="submit" class="popup__button popup__button_type_delete-card">Да</button>
+        </div>
+      </div>
+    </div>
+    <div class="popup profile-refresh">
+      <div class="popup__container">
+        <button type="button" class="popup__close popup__close_type_refresh-form" aria-label="Кнопка закрытия попапа"></button>
+        <div class="popup__content popup__content-refresh">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <form name="avatareditform" class="popup__form popup__form_avatar" novalidate>
+            <label class="popup__field">
+              <input name="avatar" id="link-avatar" type="url" class="popup__input popup__input_type_link-avatar" placeholder="Ссылка на картинку" required>
+              <span class="link-avatar-error"></span>
+            </label>
+            <button type="submit" class="popup__button popup__button_type_refresh-profile">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </div>
     <template class="card-template">
       <li class="item">
         <button type="button" class="item__trash" aria-label="Кнопка удаления"></button>
         <img src="#" alt="Картинка" class="item__image">
         <div class="item__info">
           <h2 class="item__name"></h2>
-          <button type="button" class="item__like" aria-label="Кнопка лайка"></button>
+          <div class="item__like-block">
+            <button type="button" class="item__like" aria-label="Кнопка лайка"></button>
+            <p class="item__like-counter">0</p>
+          </div>
         </div>
       </li>
     </template>

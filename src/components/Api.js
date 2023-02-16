@@ -5,26 +5,26 @@ class Api {
   }
 
   _getResponse(res) {
-    if (!res.ok) {
+    if (res.ok) {
+      return res.json();
+    } else {
       return Promise.reject(`Ошибка: ${res.status}`);
     }
-    return res.json();
   }
   //массив карточек с сервера
-  async getInitialCards() {
-    const res = await fetch(`${this._baseUrl}/cards`, {
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    });
-    return this._getResponse(res);
+    }).then(this._getResponse);
   }
+
   //информация пользователя (о себе)
-  async getUserInfo() {
-    const res = await fetch(`${this._baseUrl}/users/me`, {
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    });
-    return this._getResponse(res);
+    }).then(this._getResponse);
   }
-  //отправить данные о себе
+  //установить данные о себе
   setUserInfo(userData) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
@@ -33,18 +33,49 @@ class Api {
         name: userData.name,
         about: userData.about,
       }),
-    });
+    }).then(this._getResponse);
   }
-  async createCard(newCard) {
-    const res = await fetch(`${this._baseUrl}/cards`, {
+  //создать карточку
+  createCard(newCard) {
+    return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
         name: `${newCard.name}`,
         link: `${newCard.link}`,
       }),
+    }).then(this._getResponse);
+  }
+  //удалить карточку
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers,
     });
-    return this._getResponse(res);
+  }
+  //установить аватар
+  setUserAvatar(img) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: `${img.avatar}`,
+      }),
+    }).then(this._getResponse);
+  }
+  //установить лайк
+  setLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    }).then(this._getResponse);
+  }
+  //убрать лайк
+  deleteLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then(this._getResponse);
   }
 }
 

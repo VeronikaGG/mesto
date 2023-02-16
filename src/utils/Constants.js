@@ -16,7 +16,11 @@ export {
   popupImageOpen,
   popupNameOpen,
   cardList,
+  popupConfirm,
+  profileAvatarImg,
+  popupAvatarForm,
 };
+const popupConfirm = document.querySelector('.popup-confirm');
 const profilePopup = document.querySelector('.profile-popup');
 const profileForm = profilePopup.querySelector('.popup__form_edit-form');
 const popupAddImage = document.querySelector('.popup_add-image');
@@ -32,6 +36,8 @@ const cardTemplate = document.querySelector('.card-template').content;
 const popupImageOpen = document.querySelector('.popup__image');
 const popupNameOpen = document.querySelector('.popup__name');
 const cardList = document.querySelector('.cards__list');
+const profileAvatarImg = document.querySelector('.profile__pen-avatar');
+const popupAvatarForm = document.querySelector('.popup__form_avatar');
 const initialCards = [];
 
 //валидация форм

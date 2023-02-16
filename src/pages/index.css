@@ -23,18 +23,22 @@
 @import url(../blocks/cards/__list/cards__list.css);
 
 @import url(../blocks/item/item.css);
+@import url(../blocks/item/__like/item__like-block.css);
+@import url(../blocks/item/__like/item__like-counter.css);
 @import url(../blocks/item/__image/item__image.css);
 @import url(../blocks/item/__info/item__info.css);
 @import url(../blocks/item/__name/item__name.css);
 @import url(../blocks/item/__like/item__like.css);
 @import url(../blocks/item/__like/_active/item__like_active_black.css);
 @import url(../blocks/item/__trash/item__trash.css);
+@import url(../blocks/item/__trash/item__trash-inactive.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/footer/__text/footer__text.css);
 
 @import url(../blocks/popup/popup.css);
+
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__content/popup__content.css);
@@ -52,6 +56,7 @@
 @import url(../blocks/popup/__close-image/popup__close-image.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__name/popup__name.css);
-/* * {
-    outline: 1px solid red;
-} */
+@import url(../blocks/popup/__content-confirm/popup__content-confirm.css);
+@import url(../blocks/popup/__content/popup__content-refresh.css);
+@import url(../blocks/profile/__avatar/profile__avatar-edit.css);
+@import url(../blocks/profile/__pen/profile__pen-avatar.css);
