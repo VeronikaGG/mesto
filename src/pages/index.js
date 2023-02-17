@@ -84,13 +84,12 @@ function handleAvatarSubmit(elm) {
       popupRefreshAvatarWhitForm.loadingText(false);
     });
 }
-// setTimeout(handleAvatarSubmit, handleProfeleFormSubmit, 1000);
+// setTimeout(handleAvatarSubmit, handleProfeleFormSubmit, handleCardFormSubmit, 1000);
 
 // // //редактирование профиля, данные из профиля в попап
 const fillProfileInputs = () => {
   const inputs = profileInfo.getUserInfo();
-  popupName.value = inputs.name;
-  popupActivities.value = inputs.about;
+  popupProfileWithForm.setInputValues(inputs);
 };
 // попап обновить аватар
 profileAvatarImg.addEventListener('click', () => {
@@ -105,14 +104,13 @@ popupOpenButtonElement.addEventListener('click', () => {
   profileFormValidator.clearInputErrors();
   popupProfileWithForm.open();
 });
-
-const createCard = (item) => {
+function createCard(item) {
   const card = new Card(userId, item, handleOpenPopupImage, '.card-template', handleDeleteItem, handleClickLike);
 
   const cardElements = card.generateCard();
 
   return cardElements;
-};
+}
 //установить лайки
 function handleClickLike(card) {
   if (!card.isLike()) {
@@ -167,14 +165,18 @@ const newCardsList = new Section(
 
 //создание карточки
 function handleCardFormSubmit(card) {
+  popupCreateCardWithForm.loadingText('Сохранение...', true);
   api
     .createCard(card)
     .then((newCard) => {
-      cardList.prepend(createCard(newCard));
+      newCardsList.addCard(createCard(newCard));
       popupCreateCardWithForm.close();
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      popupCreateCardWithForm.loadingText(false);
     });
 }
 const openImageModal = new PopupWithImage('.popup_open-image');

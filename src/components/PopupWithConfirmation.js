@@ -15,7 +15,6 @@ export class PopupWithConfirmation extends Popup {
         .catch((err) => {
           console.log(err);
         });
-      super.close();
     });
 
     super.setEventListeners();
