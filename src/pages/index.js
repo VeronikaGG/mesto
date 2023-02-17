@@ -178,7 +178,7 @@ function handleCardFormSubmit(card) {
       popupCreateCardWithForm.loadingText(false);
     });
 }
-setTimeout(handleAvatarSubmit, handleProfeleFormSubmit, handleCardFormSubmit, 1000);
+// setTimeout(handleAvatarSubmit, handleProfeleFormSubmit, handleCardFormSubmit, 1000);
 
 const openImageModal = new PopupWithImage('.popup_open-image');
 openImageModal.setEventListeners();
